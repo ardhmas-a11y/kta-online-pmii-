@@ -1,175 +1,169 @@
-/*=========================================
+/*==================================================
   KTA ONLINE PMII PACITAN
-=========================================*/
+  SCRIPT.JS FINAL V2.0
+===================================================*/
 
-// GANTI DENGAN URL WEB APP APPS SCRIPT
-const SCRIPT_URL = "PASTE_URL_WEB_APP_DISINI";
+// URL Web App Google Apps Script
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzP1H0VR5OqU2BALAJt6z7sGH1FCXQ44-MQixQe3S9E4JC0NhxRQ9O3wfT18bQVMqtNqA/exec";
 
 // Nomor WhatsApp Admin
 const ADMIN_WA = "6285124249513";
 
 const form = document.getElementById("formKTA");
 
-if(form){
+if (form) {
 
-form.addEventListener("submit", async function(e){
+    form.addEventListener("submit", function (e) {
 
-e.preventDefault();
+        e.preventDefault();
 
-// ================= VALIDASI =================
+        //==============================
+        // Ambil Data
+        //==============================
 
-const nama = document.getElementById("nama").value.trim();
-const nik = document.getElementById("nik").value.trim();
-const tempat = document.getElementById("tempat").value.trim();
-const tanggal = document.getElementById("tanggal").value;
-const jk = document.getElementById("jk").value;
-const hp = document.getElementById("hp").value.trim();
-const alamat = document.getElementById("alamat").value.trim();
-const rayon = document.getElementById("rayon").value.trim();
-const komisariat = document.getElementById("komisariat").value.trim();
+        const nama = document.getElementById("nama").value.trim();
+        const tempat = document.getElementById("tempat").value.trim();
+        const tanggal = document.getElementById("tanggal").value;
+        const alamat = document.getElementById("alamat").value.trim();
+        const hp = document.getElementById("hp").value.trim();
 
-const foto = document.getElementById("foto").files[0];
-const mapaba = document.getElementById("sertifikat").files[0];
-const bukti = document.getElementById("bukti").files[0];
+        const foto = document.getElementById("foto").files[0];
+        const sertifikat = document.getElementById("sertifikat").files[0];
+        const bukti = document.getElementById("bukti").files[0];
 
-if(
-!nama ||
-!nik ||
-!tempat ||
-!tanggal ||
-!jk ||
-!hp ||
-!alamat ||
-!rayon ||
-!komisariat
-){
+        //==============================
+        // Validasi
+        //==============================
 
-alert("Lengkapi seluruh biodata.");
+        if (!nama || !tempat || !tanggal || !alamat || !hp) {
 
-return;
+            alert("Silakan lengkapi seluruh biodata.");
 
-}
+            return;
 
-if(!foto){
+        }
 
-alert("Pas Foto wajib diupload.");
+        if (!foto) {
 
-return;
+            alert("Pas Foto wajib diupload.");
 
-}
+            return;
 
-if(!mapaba){
+        }
 
-alert("Sertifikat MAPABA wajib diupload.");
+        if (!sertifikat) {
 
-return;
+            alert("Sertifikat MAPABA wajib diupload.");
 
-}
+            return;
 
-if(!bukti){
+        }
 
-alert("Bukti pembayaran wajib diupload.");
+        if (!bukti) {
 
-return;
+            alert("Bukti pembayaran wajib diupload.");
 
-}
+            return;
 
-// ================= LOADING =================
+        }
 
-const tombol = document.querySelector("button[type='submit']");
+        //==============================
+        // Loading
+        //==============================
 
-tombol.disabled=true;
+        const tombol = form.querySelector("button[type='submit']");
 
-tombol.innerHTML="Mengirim Pendaftaran...";
+        tombol.disabled = true;
 
-// ================= KIRIM =================
+        tombol.innerHTML = "Mengirim Pendaftaran...";
 
-const formData = new FormData();
+        //==============================
+        // Data
+        //==============================
 
-formData.append("nama",nama);
-formData.append("nik",nik);
-formData.append("tempat",tempat);
-formData.append("tanggal",tanggal);
-formData.append("jk",jk);
-formData.append("hp",hp);
-formData.append("alamat",alamat);
-formData.append("rayon",rayon);
-formData.append("komisariat",komisariat);
-formData.append("cabang","PC PMII PACITAN");
+        const formData = new FormData();
 
-formData.append("foto",foto);
-formData.append("sertifikat",mapaba);
-formData.append("bukti",bukti);
+        formData.append("nama", nama);
+        formData.append("tempat", tempat);
+        formData.append("tanggal", tanggal);
+        formData.append("alamat", alamat);
+        formData.append("hp", hp);
 
-fetch(SCRIPT_URL,{
+        //==============================
+        // Kirim ke Apps Script
+        //==============================
 
-method:"POST",
+        fetch(SCRIPT_URL, {
 
-body:formData
+            method: "POST",
 
-})
+            body: formData
 
-.then(res=>res.json())
+        })
 
-.then(data=>{
+        .then(response => response.json())
 
-// ================= SUKSES =================
+        .then(result => {
 
-alert("✅ Pendaftaran berhasil.\nAnda akan diarahkan ke WhatsApp Admin.");
+            if (result.status) {
 
-const pesan=
+                alert("✅ Pendaftaran berhasil!\n\nSelanjutnya Anda akan diarahkan ke WhatsApp Admin.");
+
+                //==============================
+                // Pesan WhatsApp
+                //==============================
+
+                const pesan =
 `Assalamu'alaikum Wr. Wb.
 
 Saya telah melakukan pendaftaran KTA Online PMII.
 
 Nama : ${nama}
 
-NIK : ${nik}
+Tempat/Tanggal Lahir :
+${tempat}, ${tanggal}
 
-Rayon : ${rayon}
+Nomor HP :
+${hp}
 
-Komisariat : ${komisariat}
+Asal Cabang :
+PC PMII PACITAN
 
-Cabang : PC PMII PACITAN
-
-Saya telah mengupload:
-
-✓ Pas Foto
-✓ Sertifikat MAPABA
-✓ Bukti Pembayaran
-
-Mohon dilakukan verifikasi.
+Mohon dilakukan verifikasi data.
 
 Terima kasih.`;
 
-window.open(
+                window.open(
+                    "https://wa.me/" + ADMIN_WA + "?text=" + encodeURIComponent(pesan),
+                    "_blank"
+                );
 
-"https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(pesan),
+                form.reset();
 
-"_blank"
+            } else {
 
-);
+                alert("Gagal menyimpan data.");
 
-form.reset();
+            }
 
-})
+        })
 
-.catch(err=>{
+        .catch(error => {
 
-console.log(err);
+            console.log(error);
 
-alert("Terjadi kesalahan saat mengirim data.");
+            alert("Terjadi kesalahan koneksi ke server.");
 
-})
+        })
 
-.finally(()=>{
+        .finally(() => {
 
-tombol.disabled=false;
+            tombol.disabled = false;
 
-tombol.innerHTML="KIRIM PENDAFTARAN";
+            tombol.innerHTML = "KIRIM PENDAFTARAN";
 
-});
+        });
 
-});
+    });
 
 }
