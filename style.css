@@ -1,167 +1,281 @@
-/* ===========================
+/* ======================================
    KTA ONLINE PMII PACITAN
-   =========================== */
+   ====================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
     background:#f5f7fb;
+    color:#333;
 }
 
-/* ===========================
+/* ======================================
    HERO
-   =========================== */
+   ====================================== */
 
 .hero{
-    background:linear-gradient(135deg,#003c8f,#0059d6);
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+    background:linear-gradient(135deg,#003c8f,#0057d8);
     color:#fff;
-    padding:40px 20px;
+    text-align:center;
+    padding:70px 20px;
 }
 
-.logo img{
+.logo{
     width:120px;
     margin-bottom:20px;
 }
 
-.hero h1{
-    font-size:42px;
-    font-weight:bold;
-    margin-bottom:10px;
+.hero h5{
+    font-size:18px;
+    letter-spacing:2px;
+    font-weight:600;
+}
+
+.hero h3{
+    font-size:30px;
+    font-weight:700;
+    margin-top:10px;
+}
+
+.hero h4{
+    color:#FFD700;
+    font-weight:700;
+    margin-top:8px;
 }
 
 .hero h2{
+    margin-top:25px;
     font-size:22px;
-    color:#FFD700;
-    margin-bottom:20px;
+    font-weight:600;
 }
 
-.hero p{
-    max-width:650px;
+.hero h1{
+    font-size:36px;
+    font-weight:800;
+    margin-top:10px;
+}
+
+.subjudul{
+    max-width:700px;
     margin:auto;
-    line-height:28px;
+    margin-top:20px;
+    line-height:30px;
     font-size:17px;
 }
 
-/* ===========================
+/* ======================================
    BUTTON
-   =========================== */
+   ====================================== */
 
-.menu{
-    margin-top:35px;
-}
-
-.menu a{
-    text-decoration:none;
-    display:inline-block;
-    margin:10px;
-    padding:15px 35px;
+.tombol{
     border-radius:50px;
-    font-weight:bold;
+    padding:14px 35px;
+    margin:10px;
+    font-weight:600;
     transition:.3s;
 }
 
-.btn-daftar{
-    background:#FFD700;
-    color:#000;
+.tombol:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
-.btn-daftar:hover{
-    background:#ffca00;
-    transform:scale(1.05);
+/* ======================================
+   CARD
+   ====================================== */
+
+.card{
+    border:none;
+    border-radius:20px;
 }
 
-.btn-status{
-    background:#fff;
-    color:#003c8f;
-}
-
-.btn-status:hover{
-    background:#eaeaea;
-    transform:scale(1.05);
-}
-
-/* ===========================
-   ALUR
-   =========================== */
-
-.alur{
-    padding:70px 20px;
-}
-
-.alur h2{
-    text-align:center;
-    margin-bottom:40px;
-    color:#003c8f;
-    font-weight:bold;
-}
-
-.card-alur{
-    background:white;
-    border-radius:15px;
+.card-body{
     padding:30px;
-    text-align:center;
-    box-shadow:0 8px 20px rgba(0,0,0,.1);
-    transition:.3s;
-    margin-bottom:25px;
 }
 
-.card-alur:hover{
+.judul{
+    color:#003c8f;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+/* ======================================
+   LANGKAH
+   ====================================== */
+
+.langkah{
+    text-align:center;
+    transition:.3s;
+    height:100%;
+}
+
+.langkah:hover{
     transform:translateY(-8px);
 }
 
-.card-alur h3{
-    width:60px;
-    height:60px;
-    margin:auto;
-    border-radius:50%;
-    background:#FFD700;
-    color:#003c8f;
-    line-height:60px;
-    font-size:26px;
+.langkah h1{
+    font-size:60px;
+    color:#FFD700;
     margin-bottom:15px;
 }
 
-/* ===========================
+.langkah h5{
+    color:#003c8f;
+    font-weight:700;
+}
+
+/* ======================================
+   LIST
+   ====================================== */
+
+ul{
+    padding-left:20px;
+}
+
+ul li{
+    margin-bottom:12px;
+    line-height:28px;
+}
+
+/* ======================================
    FOOTER
-   =========================== */
+   ====================================== */
 
 footer{
     background:#003c8f;
     color:white;
+    padding:45px 20px;
     text-align:center;
-    padding:20px;
 }
 
-/* ===========================
-   MOBILE
-   =========================== */
+footer h4{
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+footer p{
+    margin-bottom:15px;
+    line-height:28px;
+}
+
+footer hr{
+    border-color:rgba(255,255,255,.3);
+}
+
+footer small{
+    color:#ddd;
+}
+
+/* ======================================
+   FORM
+   ====================================== */
+
+.form-control,
+.form-select{
+    border-radius:12px;
+    padding:12px;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#003c8f;
+    box-shadow:0 0 0 .2rem rgba(0,60,143,.15);
+}
+
+.btn-primary{
+    background:#003c8f;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#002d6f;
+}
+
+.alert{
+    border-radius:15px;
+}
+
+/* ======================================
+   INFORMASI PEMBAYARAN
+   ====================================== */
+
+.info-pembayaran{
+    background:#fff8e1;
+    border-left:6px solid #FFD700;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:30px;
+}
+
+.info-pembayaran h3{
+    color:#003c8f;
+    font-weight:700;
+}
+
+.nomor-dana{
+    font-size:30px;
+    font-weight:700;
+    color:#28a745;
+}
+
+.biaya{
+    font-size:35px;
+    color:#dc3545;
+    font-weight:800;
+}
+
+/* ======================================
+   RESPONSIVE
+   ====================================== */
 
 @media(max-width:768px){
 
+.hero{
+    padding:50px 20px;
+}
+
+.logo{
+    width:90px;
+}
+
+.hero h3{
+    font-size:22px;
+}
+
 .hero h1{
-    font-size:30px;
+    font-size:26px;
 }
 
 .hero h2{
     font-size:18px;
 }
 
-.logo img{
-    width:90px;
+.hero h5{
+    font-size:15px;
 }
 
-.menu a{
+.subjudul{
+    font-size:15px;
+}
+
+.tombol{
     width:100%;
+    margin:8px 0;
+}
+
+.nomor-dana{
+    font-size:24px;
+}
+
+.biaya{
+    font-size:28px;
 }
 
 }
