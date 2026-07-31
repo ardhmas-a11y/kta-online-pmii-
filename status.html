@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cek Status KTA</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+<div class="text-center mb-4">
+
+<img src="images/logo-pmii.png" class="logo">
+
+<h4>PENGURUS CABANG</h4>
+
+<h2>PERGERAKAN MAHASISWA ISLAM INDONESIA</h2>
+
+<h3>PACITAN</h3>
+
+<h4 class="mt-3">
+
+CEK STATUS PENDAFTARAN KTA
+
+</h4>
+
+</div>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<label>
+
+Nomor Registrasi
+
+</label>
+
+<input
+type="text"
+id="reg"
+class="form-control"
+placeholder="Contoh : REG-2026-1234">
+
+<button
+class="btn btn-primary mt-3 w-100"
+onclick="cekStatus()">
+
+CEK STATUS
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="hasil"
+class="mt-4">
+
+</div>
+
+</div>
+
+<script>
+
+const URL="https://script.google.com/macros/s/AKfycbzP1H0VR5OqU2BALAJt6z7sGH1FCXQ44-MQixQe3S9E4JC0NhxRQ9O3wfT18bQVMqtNqA/exec";
+
+function cekStatus(){
+
+const reg=document.getElementById("reg").value;
+
+fetch(URL+"?reg="+reg)
+
+.then(r=>r.json())
+
+.then(data=>{
+
+if(!data.ditemukan){
+
+document.getElementById("hasil").innerHTML=
+
+`<div class="alert alert-danger">
+
+Nomor Registrasi tidak ditemukan.
+
+</div>`;
+
+return;
+
+}
+
+document.getElementById("hasil").innerHTML=
+
+`
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<h4>Status Pendaftaran</h4>
+
+<hr>
+
+<p>
+
+<b>Nama</b>
+
+<br>
+
+${data.nama}
+
+</p>
+
+<p>
+
+<b>Nomor Registrasi</b>
+
+<br>
+
+${data.registrasi}
+
+</p>
+
+<p>
+
+<b>Nomor KTA</b>
+
+<br>
+
+${data.nomorKTA==""?"Belum tersedia":data.nomorKTA}
+
+</p>
+
+<p>
+
+<b>Status</b>
+
+<br>
+
+<span class="badge bg-success">
+
+${data.status}
+
+</span>
+
+</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
